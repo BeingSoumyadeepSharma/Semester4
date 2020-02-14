@@ -1,0 +1,13 @@
+Create a student registration form using the following fields:
+
+1. Text boxes to accept the student name & guardian's name
+2. Radio Buttons to accept the gender. (isset function to be used)
+3. A text(number) box to accept the contact number.
+4. Text area box to accept the address of the candidate.
+5. Check boxes to accept the hobby(ies) of the student (isset function to be used)
+
+On Clicking the SUBMIT button all input's given by the candidate will be displayed on a new page.
+
+(Use PHP $_request method to accept data from the form fields).
+
+Design the form using a RESET button also.
