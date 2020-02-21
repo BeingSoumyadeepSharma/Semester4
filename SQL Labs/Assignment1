@@ -14,7 +14,7 @@ DESC Employee;
 
 ALTER TABLE Employee MODIFY empname VARCHAR2(20); /*Altering the size of the Employee Name column from 25 to 20 */
 
-INSERT INTO Employee VALUES ('EM001','Soumyadeep Sharma','28-JUN-99','ANALYTICS','25-APR-18',50000);
+INSERT INTO Employee VALUES ('EM001','Sanket Mehra','28-JUN-99','ANALYTICS','25-APR-18',50000);
 INSERT INTO Employee VALUES ('EM002','Akshay Mishra','21-OCT-97','ACCOUNTS','21-FEB-18',45000);
 INSERT INTO Employee VALUES ('EM003','Manish Sharma','19-JAN-98','MARKETING','22-FEB-19',42000);
 INSERT INTO Employee VALUES ('EM028','Piyush Sharma','15-JUL-95','SALES','24-JUL-16',62000);
@@ -38,33 +38,33 @@ SELECT empname FROM Employee WHERE department != 'ANALYTICS'; /*Display the name
 
 SELECT empname, department FROM Employee WHERE empname LIKE 'R%e'; /*Display the names and departments of all the employees whose names start with 'R' and end with an 'E'*/
 
-SELECT * FROM Employee WHERE doj LIKE '%-15';
+SELECT * FROM Employee WHERE doj LIKE '%-15'; /*Display the details of all the employees who have joined on any Monday*/
 
-SELECT * FROM Employee WHERE to_char(doj, 'dy') = 'mon';
+SELECT * FROM Employee WHERE to_char(doj, 'dy') = 'mon'; /*Display all the details of all the employees who have joined on any Monday*/
 
-SELECT * FROM Employee WHERE empid = 'EM101' OR empid = 'EM220' OR empid = 'EM250' OR empid = 'EM300';
+SELECT * FROM Employee WHERE empid = 'EM101' OR empid = 'EM220' OR empid = 'EM250' OR empid = 'EM300'; /*Display the details of all the employees with ids EM101, EM220, EM250, EM300*/
 
-SELECT * FROM Employee WHERE to_char(dob, 'yyyy') > 1980;
+SELECT * FROM Employee WHERE to_char(dob, 'yyyy') > 1980; /*Display the details of all the employees who were born after 1980*/
 
-UPDATE Employee SET salary = 1.2 * salary WHERE department = 'ANALYTICS';
+UPDATE Employee SET salary = 1.2 * salary WHERE department = 'ANALYTICS'; /*Increase the Salaries of all the employees of ANALYTICS department by 20%*/
 
-SELECT empname, department, salary FROM Employee WHERE department = 'ANALYTICS';
+SELECT empname, department, salary FROM Employee WHERE department = 'ANALYTICS'; 
 
-UPDATE Employee SET department = 'ACCOUNTS' WHERE empname = 'Piyush Sharma';
+UPDATE Employee SET department = 'ACCOUNTS' WHERE empname = 'Piyush Sharma'; /*Change the department of PIYUSH SHARMA from SALES to ACCOUNTS*/
 
 SELECT * FROM Employee WHERE empname = 'Piyush Sharma';
 
-DELETE FROM Employee WHERE empid = 'EM141' OR empid = 'EM032' OR empid = 'EM029';
+DELETE FROM Employee WHERE empid = 'EM141' OR empid = 'EM032' OR empid = 'EM029'; /*Delete the records of the employees with the ids EM141, EM32, EM29*/
 
 SELECT * FROM Employee;
 
-SELECT MAX(salary), MIN(salary) FROM Employee;
+SELECT MAX(salary), MIN(salary) FROM Employee; /*Display the Maximum and Minimum Salaries*/
 
-SELECT MAX(doj) FROM Employee;
+SELECT MAX(doj) FROM Employee; /*Display the date of joining of the youngest employee*/
 
-SELECT COUNT(empname) FROM Employee WHERE department = 'MARKETING';
+SELECT COUNT(empname) FROM Employee WHERE department = 'MARKETING'; /*Display the total number of employees present in Marketing Department */
 
-UPDATE Employee SET salary = 1.15 * salary WHERE doj = (SELECT MIN(doj) FROM Employee);
+UPDATE Employee SET salary = 1.15 * salary WHERE doj = (SELECT MIN(doj) FROM Employee); /*Updating the Salary by 15% of the most experienced Employee*/
 
 SELECT * FROM Employee;
 
