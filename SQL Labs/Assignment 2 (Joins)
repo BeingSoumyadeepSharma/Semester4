@@ -1,0 +1,36 @@
+/* Adding Some more Entity Sets to the already created Employee Table for Performing join operations on it with the Department Table*/
+
+SELECT * FROM Employee;
+
+INSERT INTO Employee VALUES ('EM104','Jonathan Harington','12-JUN-96','ACCOUNTS','21-NOV-15',48000);
+INSERT INTO Employee VALUES ('EM107','Fraklin Clinton','30-NOV-97','HR','15-JUN-16',51000);
+INSERT INTO Employee VALUES ('EM110','Trevor James','15-FEB-00','MARKETING','28-FEB-18',31000);
+
+/* Creating the Department Table */
+CREATE TABLE Department (
+    department VARCHAR2(20) PRIMARY KEY NOT NULL,
+    loca VARCHAR2(15) NOT NULL
+);
+
+DESC Department;
+
+INSERT INTO Department VALUES ('HR','Delhi');
+INSERT INTO Department VALUES ('ACCOUNTS','Lucknow');
+INSERT INTO Department VALUES ('ANALYTICS','Kolkata');
+INSERT INTO Department VALUES ('SALES','Mumbai');
+INSERT INTO Department VALUES ('MARKETING','Chennai');
+INSERT INTO Department VALUES ('RESEARCH','Bengaluru');
+
+SELECT * FROM Employee;
+
+SELECT * FROM Department;
+
+COMMIT; /*Commiting the changes before the electricity goes POOF*/
+
+SELECT Employee.empid, Department.department, Department.loca FROM Employee INNER JOIN Department ON Employee.empid = 'EM101' OR Employee.empid = 'EM104' OR Employee.empid = 'EM107' OR Employee.empid = 'EM110' WHERE Employee.department = Department.department; /*Select the details of department where the following Employees Work*/
+
+SELECT Employee.empid, Employee.empname, Employee.dob, Employee.department, Employee.doj, Employee.salary, Department.loca FROM Employee INNER JOIN Department ON Department.loca = 'Kolkata' WHERE Department.department = Employee.department; /*Find the details of all the employees who are working in Kolkata*/
+
+SELECT Employee.doj FROM Employee INNER JOIN Department ON Department.department = 'HR' WHERE Department.department = Employee.department; /*Find the dates of joining of the employees working for HR Department*/
+
+SELECT MAX(salary) FROM Employee INNER JOIN Department ON Department.loca = 'Mumbai' WHERE Department.department = Employee.department; /*Find the maximum salary of any department which is located in Mumbai*/
