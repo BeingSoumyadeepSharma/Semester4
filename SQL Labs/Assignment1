@@ -1,0 +1,71 @@
+CREATE TABLE Employee (
+    empid VARCHAR2(5) PRIMARY KEY,
+    empname VARCHAR2(25) NOT NULL,
+    dob DATE NOT NULL,
+    department VARCHAR2(20) NOT NULL,
+    doj DATE NOT NULL,
+    salary NUMERIC(7,0) DEFAULT 15000,
+    CONSTRAINT empid_ck CHECK(empid LIKE 'EM%'),
+    CONSTRAINT department_ck CHECK(department = 'HR' OR department = 'ACCOUNTS' OR department = 'SALES' OR department = 'MARKETING' OR department = 'ANALYTICS'),
+    CONSTRAINT doj_ck CHECK(doj > dob)
+);
+
+DESC Employee;
+
+ALTER TABLE Employee MODIFY empname VARCHAR2(20); /*Altering the size of the Employee Name column from 25 to 20 */
+
+INSERT INTO Employee VALUES ('EM001','Soumyadeep Sharma','28-JUN-99','ANALYTICS','25-APR-18',50000);
+INSERT INTO Employee VALUES ('EM002','Akshay Mishra','21-OCT-97','ACCOUNTS','21-FEB-18',45000);
+INSERT INTO Employee VALUES ('EM003','Manish Sharma','19-JAN-98','MARKETING','22-FEB-19',42000);
+INSERT INTO Employee VALUES ('EM028','Piyush Sharma','15-JUL-95','SALES','24-JUL-16',62000);
+INSERT INTO Employee VALUES ('EM029','Kalyan Bhatt','16-APR-96','HR','25-OCT-17',47000);
+INSERT INTO Employee VALUES ('EM030','Robin Rathore','15-MAY-94','HR','14-DEC-17',45000);
+INSERT INTO Employee VALUES ('EM032','Mukesh Ranawat','14-MAR-95','ANALYTICS','20-DEC-17',52000);
+INSERT INTO Employee VALUES ('EM220','Mahesh Sawant','15-NOV-82','ACCOUNTS','25-DEC-02',65000);
+INSERT INTO Employee VALUES ('EM101','Akash Shaw','22-SEP-90','SALES','24-SEP-05',60000);
+INSERT INTO Employee VALUES ('EM141','Micheal Biswas','23-AUG-93','SALES','14-AUG-15',52000);
+INSERT INTO Employee VALUES ('EM200','Nortan Coldrige','29-AUG-95','SALES','14-APR-15',42000);
+INSERT INTO Employee VALUES ('EM240','Manual Marsh','17-JUN-92','MARKETING','14-FEB-16',52000);
+INSERT INTO Employee VALUES ('EM250','Blake Jonathan','12-OCT-98','HR','26-DEC-19',36000);
+INSERT INTO Employee VALUES ('EM300','Luke Kent','29-NOV-99','ANALYTICS','17-OCT-19',52000);
+INSERT INTO Employee VALUES ('EM350','Bill Glen','15-JAN-00','MARKETING','17-FEB-20',25000);
+
+SELECT * FROM Employee; /*Display the details of all the employees*/
+
+SELECT * FROM Employee WHERE department = 'HR' OR department = 'SALES'; /*Display the details of all the employees working for HR and SALES Department*/
+
+SELECT empname FROM Employee WHERE department != 'ANALYTICS'; /*Display the names of all the employees who are not in the Analytics Department*/
+
+SELECT empname, department FROM Employee WHERE empname LIKE 'R%e'; /*Display the names and departments of all the employees whose names start with 'R' and end with an 'E'*/
+
+SELECT * FROM Employee WHERE doj LIKE '%-15';
+
+SELECT * FROM Employee WHERE to_char(doj, 'dy') = 'mon';
+
+SELECT * FROM Employee WHERE empid = 'EM101' OR empid = 'EM220' OR empid = 'EM250' OR empid = 'EM300';
+
+SELECT * FROM Employee WHERE to_char(dob, 'yyyy') > 1980;
+
+UPDATE Employee SET salary = 1.2 * salary WHERE department = 'ANALYTICS';
+
+SELECT empname, department, salary FROM Employee WHERE department = 'ANALYTICS';
+
+UPDATE Employee SET department = 'ACCOUNTS' WHERE empname = 'Piyush Sharma';
+
+SELECT * FROM Employee WHERE empname = 'Piyush Sharma';
+
+DELETE FROM Employee WHERE empid = 'EM141' OR empid = 'EM032' OR empid = 'EM029';
+
+SELECT * FROM Employee;
+
+SELECT MAX(salary), MIN(salary) FROM Employee;
+
+SELECT MAX(doj) FROM Employee;
+
+SELECT COUNT(empname) FROM Employee WHERE department = 'MARKETING';
+
+UPDATE Employee SET salary = 1.15 * salary WHERE doj = (SELECT MIN(doj) FROM Employee);
+
+SELECT * FROM Employee;
+
+COMMIT;
