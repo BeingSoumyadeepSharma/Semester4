@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Employee Table</title>
+        <title>Employee Table Search</title>
     </head>
     <body bgcolor="#520b52">
         <font face="Caviar Dreams" size="20" color="#cb1ccb">
